@@ -1,6 +1,6 @@
-defmodule HedwigGithub.ActivityResponder do
+defmodule HedwigGithub.PullRequestResponder do
   @moduledoc """
-  Fetches the last 5 commits for a Github repo
+  Fetches the last 5 open PRs for a Github repo
 
   It requires a github access token, configured like so.
   
@@ -11,18 +11,15 @@ defmodule HedwigGithub.ActivityResponder do
   alias HedwigGithub.Helper
 
   @usage """
-  github-activity <org>/<repo> - display the last 5 commits for the repo 
+  github-prs <org>/<repo> - display the last 5 open pull requests for the repo 
   """
-  hear ~r/^github-activity (?<org>.*)\/(?<repo>.*)/i, message do
-    org = message.matches["org"]
-    repo = message.matches["repo"]
-    Enum.each(Helper.commits(org, repo), fn commit -> send message, commit end)    
-  end
-
   hear ~r/^github-prs (?<org>.*)\/(?<repo>.*)/i, message do
     org = message.matches["org"]
     repo = message.matches["repo"]
     Enum.each(Helper.pull_requests(org, repo), fn commit -> send message, commit end)    
-  end  
+  end
 
 end
+  
+  
+  

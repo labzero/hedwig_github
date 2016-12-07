@@ -3,7 +3,8 @@
 Will eventually be a collection of useful github related responders for Hedwig IM. Currently only has one responder.
 
 * Responders
-  * activity_responder - returns the last 5 commits in the specified repo
+  * ActivityResponder - returns the last 5 commits in the specified repo
+  * PullRequestResponder - returns the last 5 open PRs in the specified repo
 
 ## Installation
 
@@ -26,7 +27,8 @@ Enable the responders by adding them to your Hedwig.Robot's config section of `c
 config :my_hedwig_robot, MyHedwigRobot.Robot,
   adapter: Hedwig.Adapters.Console,
   responders: [
-    {HedwigGithub.ActivityResponder, []},    
+    {HedwigGithub.ActivityResponder, []}, 
+    {HedwigGithub.PullRequestResponder, []},         
     # ...
   ]
 ```
