@@ -19,10 +19,4 @@ defmodule HedwigGithub.ActivityResponder do
     Enum.each(Helper.commits(org, repo), fn commit -> send message, commit end)    
   end
 
-  hear ~r/^github-prs (?<org>.*)\/(?<repo>.*)/i, message do
-    org = message.matches["org"]
-    repo = message.matches["repo"]
-    Enum.each(Helper.pull_requests(org, repo), fn commit -> send message, commit end)    
-  end  
-
 end
