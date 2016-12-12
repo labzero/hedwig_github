@@ -8,6 +8,7 @@ defmodule HedwigGithub.ActivityResponder do
 
   """
   use Hedwig.Responder
+  alias HedwigGithub.Helper
 
   @usage """
   github-activity <org>/<repo> - display the last 5 commits for the repo 
@@ -15,7 +16,7 @@ defmodule HedwigGithub.ActivityResponder do
   hear ~r/^github-activity (?<org>.*)\/(?<repo>.*)/i, message do
     org = message.matches["org"]
     repo = message.matches["repo"]
-    Enum.each(HedwigGithub.Helper.formatted_commits(org, repo), fn commit -> send message, commit end)    
+    Enum.each(Helper.commits(org, repo), fn commit -> send message, commit end)    
   end
 
 end
