@@ -18,7 +18,6 @@ defmodule HedwigGithub.HttpClient do
   end
 
   def pull_requests(org, repo, limit) do
-    IO.puts(pull_requests_url(org, repo, limit))
     case HTTPoison.get(pull_requests_url(org, repo, limit), [auth_header(@access_token)]) do
       {:ok, %HTTPoison.Response{status_code: status}} when status >= 400 -> 
         {:error, "HTTP status code: #{status}"}
