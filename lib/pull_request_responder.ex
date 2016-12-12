@@ -14,10 +14,17 @@ defmodule HedwigGithub.PullRequestResponder do
   github-prs <org>/<repo> - display the last 5 open pull requests for the repo 
   """
   hear ~r/^github-prs (?<org>.*)\/(?<repo>.*)/i, message do
+    IO.puts("received prs request")
     org = message.matches["org"]
-    repo = message.matches["repo"]
-    Enum.each(Helper.pull_requests(org, repo), fn commit -> send message, commit end)    
+    repo = message.matches["repo"]    
+    send_messages(Helper.pull_requests(org, repo), message)    
   end
+
+  def send_messages(prs, message) when length(prs) > 0 do
+    Enum.each(prs, fn commit -> send message, commit end)    
+  end
+
+  def send_messages(_, message), do: send message, "No open PRs for that repo"
 
 end
   
