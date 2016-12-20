@@ -1,10 +1,10 @@
 # HedwigGithub
 
-Will eventually be a collection of useful github related responders for Hedwig IM. Currently only has one responder.
+A collection of useful github responders for Hedwig IM.
 
 * Responders
-  * ActivityResponder - returns the last 5 commits in the specified repo
-  * PullRequestResponder - returns the last 5 open PRs in the specified repo
+  * `github activity <repo>` - returns the last 5 commits in the specified repo
+  * `github prs <repo>` - returns the last 5 open pull requests in the specified repo
 
 ## Installation
 
@@ -17,28 +17,24 @@ If [available in Hex](https://hex.pm/packages/hedwig_github), the package can be
       [{:hedwig_github, "~> 0.1.0"}]
     end
     ```
+  * Add `hedwig_github` to your list of applications in `mix.exs`
 
+## Configuration
 
-## Usage
+  * Enable the responder by adding it to your Hedwig.Robot's config section of `config/config.exs`
 
-Enable the responders by adding them to your Hedwig.Robot's config section of `config/config.exs`
-
-```elixir
-config :my_hedwig_robot, MyHedwigRobot.Robot,
-  adapter: Hedwig.Adapters.Console,
-  responders: [
-    {HedwigGithub.ActivityResponder, []}, 
-    {HedwigGithub.PullRequestResponder, []},         
-    # ...
-  ]
-```
-
-You'll add a github access token to your `config.exs`
-
-```elixir
- config :hedwig_github, :github_api_token, "your_access_token"
- ```
-
+    ```elixir
+    config :my_hedwig_robot, MyHedwigRobot.Robot,
+      adapter: Hedwig.Adapters.Console,
+      responders: [
+        {HedwigGithub.Responder, []}, 
+        # ...
+      ]
+    ```
+  * Add a github access token to `config.exs`
+    ```elixir
+     config :hedwig_github, :github_api_token, "your_access_token"
+     ```
 
 ## Contributing
 
