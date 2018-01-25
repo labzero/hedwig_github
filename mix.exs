@@ -5,7 +5,7 @@ defmodule HedwigGithub.Mixfile do
     [app: :hedwig_github,
      version: "0.1.0",
      elixir: "~> 1.3",
-     elixirc_paths: elixirc_paths(Mix.env),               
+     elixirc_paths: elixirc_paths(Mix.env),
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps()]
@@ -30,13 +30,13 @@ defmodule HedwigGithub.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:hedwig, "~> 1.0"},      
+      {:hedwig, "~> 1.0"},
       {:poison, "~> 3.0"},
-      {:httpoison, "~> 0.10.0"},      
+      {:httpoison, "~> 1.0"},
     ]
   end
 
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(:dev), do: ["lib", "test/support"]
-  defp elixirc_paths(_), do: ["lib"]   
+  defp elixirc_paths(_), do: ["lib"]
 end
